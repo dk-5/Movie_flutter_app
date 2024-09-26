@@ -52,7 +52,7 @@ Future<List<dynamic>> fetchEpisodes(int showId) async {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Show poster
+        
             widget.show['image'] != null
                 ? Image.network(
                     widget.show['image']['original'],
@@ -66,7 +66,7 @@ Future<List<dynamic>> fetchEpisodes(int showId) async {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Show name
+                 
                   Text(
                     widget.show['name'],
                     style: const TextStyle(
@@ -88,7 +88,7 @@ Future<List<dynamic>> fetchEpisodes(int showId) async {
                   const SizedBox(height: 5),
                 
                   const SizedBox(height: 20),
-                  // Fetch and display episodes
+                
                   FutureBuilder<List<dynamic>>(
                     future: fetchEpisodes(widget.show['id']),
                     builder: (context, snapshot) {
@@ -106,9 +106,9 @@ Future<List<dynamic>> fetchEpisodes(int showId) async {
                             const SizedBox(height: 10),
                             for (var episode in snapshot.data!)
                               Card(
-                                margin:EdgeInsets.symmetric(vertical: 8.0), // Space between cards
+                                margin:EdgeInsets.symmetric(vertical: 8.0), 
                                 child: Padding(
-                                  padding: const EdgeInsets.all(16.0), // Padding inside the card
+                                  padding: const EdgeInsets.all(16.0), 
                                   child: Row(
                                     children: [
                                       // Episode image
@@ -122,9 +122,9 @@ Future<List<dynamic>> fetchEpisodes(int showId) async {
                                           : Container(
                                               width: 80,
                                               height: 120,
-                                              color: Colors.grey, // Placeholder for no image
+                                              color: Colors.grey,
                                             ),
-                                      SizedBox(width: 16), // Space between image and text
+                                      SizedBox(width: 16), 
                                       Expanded(
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,

@@ -17,7 +17,7 @@ class _ShowListState extends State<ShowList> {
   @override
   void initState() {
     super.initState();
-    // Fetch both featured and all shows
+    
     featuredShows = fetchShows("top");
     allShows = fetchShows("friends");
   }
@@ -26,7 +26,7 @@ class _ShowListState extends State<ShowList> {
     final response = await http.get(
       Uri.parse('https://api.tvmaze.com/search/shows?q=all'),
     );
-//https://api.tvmaze.com/search/shows?q=$query
+
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
@@ -44,7 +44,7 @@ class _ShowListState extends State<ShowList> {
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
-              // Trigger the search delegate when search icon is pressed
+             
               showSearch(context: context, delegate: ShowSearchDelegate());
             },
           )
@@ -58,7 +58,7 @@ class _ShowListState extends State<ShowList> {
               future: featuredShows,
               builder:(context,snapshot){
               if (snapshot.hasData) {
-                  // Get the first show and display its poster
+            
                   var show = snapshot.data![0]['show'];
                   return _buildPoster(show);
                 } else if (snapshot.hasError) {
@@ -67,7 +67,7 @@ class _ShowListState extends State<ShowList> {
                 return Center(child: CircularProgressIndicator());
               },
             ),
-            // Featured Shows (Carousel)
+      
             const Padding(
               padding:  EdgeInsets.all(8.0),
               child: Text(
@@ -89,7 +89,7 @@ class _ShowListState extends State<ShowList> {
                 return const Center(child: CircularProgressIndicator());
               },
             ),
-            // All Shows (Grid)
+           
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
@@ -148,9 +148,9 @@ class _ShowListState extends State<ShowList> {
               ),
             ),
           )
-        : Container(); // If no image is available, return an empty container
+        : Container(); 
   }
-  // Build Horizontal Carousel
+
   Widget _buildFeaturedCarousel(List<dynamic> shows) {
     return Container(
       height: 200,
@@ -197,7 +197,7 @@ class _ShowListState extends State<ShowList> {
     );
   }
 
-  // Build Grid View for Popular Shows
+
   Widget _buildShowGrid(List<dynamic> shows) {
     return GridView.builder(
       shrinkWrap: true,
@@ -245,7 +245,7 @@ class _ShowListState extends State<ShowList> {
     );
   }
 }
-// ShowSearchDelegate for searching shows
+
 class ShowSearchDelegate extends SearchDelegate {
   Future<List<dynamic>> fetchSearchResults(String query) async {
     final response = await http.get(
